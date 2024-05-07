@@ -34,8 +34,17 @@ Tutorial video for beginners to better understand the In-Place QuickSort approac
 
 ### Parameters
 
-- `arr`: The array to be sorted.
 - `left` and `right`: These parameters define the starting and ending indices of the current segment of the array being handled.
+
+#### Parameter `i`
+
+- **Meaning** : The parameter `i` typically represents the boundary of the section containing elements less than the pivot. At the start of the `partition` function, `i` is initialized to `left - 1` (or a similar value), indicating that `i` initially points to a position just before the current partition's left boundary.
+- **Role** : During the partitioning process, whenever an element less than the pivot is found, `i` is incremented, and that element is swapped with the element at the next position `i` points to. This ensures that all elements to the left of `i` are less than the pivot. Essentially, `i` helps track the end of the current section of the array that has been identified as less than the pivot.
+
+#### Parameter `j`
+
+- **Meaning** : The parameter `j` is the index used to traverse the current partition of the array during the `partition` function. It starts at `left` and moves up to `right - 1` (just before the pivot).
+- **Role** : The role of `j` is to inspect each element to see if it's less than the pivot. If it is, it's moved into the section of elements less than the pivot by swapping it with the next position `i` points to, effectively expanding that section. Thus, `j` iteratively checks each element, while `i` marks the boundary of the processed section that is less than the pivot.
 
 ### Advantages
 

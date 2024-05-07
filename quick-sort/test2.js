@@ -14,24 +14,36 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
 }
 // TODO: watch: https://www.youtube.com/watch?v=MZaf_9IZCrc
 /**
- * Helper function to partition the array around the pivot element.
+ * Partitions the array around a pivot element, ensuring all elements less than the pivot
+ * are moved to its left, and all elements greater are moved to its right. The function
+ * returns the new index of the pivot element after partitioning.
+ *
  * @param {number[]} arr - The array to partition.
  * @param {number} left - The start index for the partition.
- * @param {number} right - The end index for the partition.
+ * @param {number} right - The end index for the partition where the pivot is initially placed.
  * @returns {number} The index of the pivot element after partitioning.
+ *
+ * The partitioning process involves two indices, `i` and `j`:
+ * - `i` starts one position left of the 'left' index and moves right each time an element less than
+ *   the pivot is found, serving as a marker for where elements less than the pivot should be swapped to.
+ * - `j` iterates from the 'left' index to one less than the 'right' index, checking if elements are less
+ *   than the pivot and swapping them with the position `i` indicates if necessary.
+ * After all elements have been inspected, the pivot is swapped with the position just after the last
+ * confirmed position of `i`, effectively placing the pivot in its correct sorted position.
  */
 function partition(arr, left, right) {
-  const pivot = arr[right]; // Use the last element as the pivot
-  let i = left - 1; // Place for the next pivot
+  const pivot = arr[right]; // Using the last element as the pivot
+  let i = left - 1; // Initializing `i` to the left of the start of the array segment
 
   for (let j = left; j < right; j++) {
+    // `j` traverses the array from left to right-1
     if (arr[j] < pivot) {
-      i++;
-      swap(arr, i, j); // Swap elements that are less than the pivot
+      i++; // Increment `i` when a less than pivot element is found
+      swap(arr, i, j); // Swap the current element with the element at `i`
     }
   }
-  swap(arr, i + 1, right); // Place the pivot element in the correct slot
-  return i + 1;
+  swap(arr, i + 1, right); // Place the pivot in its correct position
+  return i + 1; // Return the new index of the pivot
 }
 
 /**
@@ -45,6 +57,7 @@ function swap(arr, i, j) {
 }
 
 // Example usage:
-const array = [10, 7, 8, 9, 1, 5];
-quickSort(array);
-console.log(array);
+const arr = [4, 1, 6, 9, 3, 2, 8, 7];
+
+quickSort(arr);
+console.log(arr);
