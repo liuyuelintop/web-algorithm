@@ -12,7 +12,7 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
   }
   return arr;
 }
-
+// TODO: watch: https://www.youtube.com/watch?v=MZaf_9IZCrc
 /**
  * Helper function to partition the array around the pivot element.
  * @param {number[]} arr - The array to partition.
